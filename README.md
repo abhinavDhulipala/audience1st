@@ -67,3 +67,5 @@ there's lots to do.  You know the drill: fork, develop, **make sure
 you have lots of tests,** rebase, PR.
 
 Questions welcome!
+
+Testing the slac k+  github integration
