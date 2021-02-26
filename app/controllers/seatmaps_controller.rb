@@ -48,7 +48,7 @@ class SeatmapsController < ApplicationController
 
   def seatmap
     # return the seatmap for this production, and array of UNAVAILABLE seats for this performance
-    showdate = Showdate.find(params[:id]) 
+    showdate = Showdate.find(params[:id])
     if showdate.has_reserved_seating?
       render :json => Seatmap.seatmap_and_unavailable_seats_as_json(showdate)
     else
@@ -68,17 +68,13 @@ class SeatmapsController < ApplicationController
   private
 
   def seatmaps_new_params
-    params.permit(:csv, :name,:image_url)
-    {
-      :image_url => params[:image_url],
-      :name => params[:name],
-      :csv => params[:csv].read
-    }
+    params.permit(:csv, :name, :image_url)
+    { image_url: params[:image_url],
+      name: params[:name],
+      csv: params[:csv].read }
   end
 
   def seatmaps_update_params
-    params.require(:seatmap).permit(:csv, :name,:image_url)
+    params.require(:seatmap).permit(:csv , :name,:image_url)
   end
-
 end
-

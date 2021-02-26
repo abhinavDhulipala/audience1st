@@ -4,7 +4,7 @@ class LabelsController < ApplicationController
   before_action do
     session[:return_to] ||= params[:return_to]
   end
-  
+
   # GET /labels
   # GET /labels.xml
   def index
@@ -39,10 +39,9 @@ class LabelsController < ApplicationController
   end
 
   private
+
   def label_params
     params.permit(:label_name)
-    {
-      :name => params[:label_name]
-    }
+    { :name => params[:label_name] }
   end
 end
