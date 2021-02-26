@@ -11,7 +11,7 @@ class ShowdatesController < ApplicationController
   end
 
   public
-  
+
   def create
     warnings = []
     cutoff = params[:advance_sales_cutoff].to_i.minutes
@@ -46,7 +46,7 @@ class ShowdatesController < ApplicationController
       :notice => warnings.join('<br/>'.html_safe))
 
   end
-    
+
   def destroy
     showdate = Showdate.find(params[:id])
     show = showdate.show

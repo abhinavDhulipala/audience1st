@@ -88,6 +88,7 @@ class TicketSalesImportsController < ApplicationController
   end
 
   private
+<<<<<<< HEAD
 
   def ticketsalesimport_params
     params.permit(:vendor, :file)
@@ -97,5 +98,16 @@ class TicketSalesImportsController < ApplicationController
       completed: false, processed_by: current_user,
       existing_customers: 0, new_customers: 0,
       tickets_sold: 0 }
+=======
+  
+  def ticketsalesimport_params
+    params.permit(:vendor, :file)
+    { :vendor => params[:vendor],
+      :raw_data => params[:file].read,
+      :filename => params[:file].original_filename,
+      :completed => false, :processed_by => current_user, 
+      :existing_customers => 0, :new_customers => 0, 
+      :tickets_sold => 0 }
+>>>>>>> 01b83d07faaab202cd68e61e181d3629ccdc0f83
   end
 end
