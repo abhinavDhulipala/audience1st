@@ -128,10 +128,9 @@ describe SessionsController do
 
     context "when creating a secret question and secret answer with a mix of permitted and unpermitted params" do 
       before :each do 
-        @user = Customer.new(:first_name => "Fake", :last_name => "User", 
+        @user = Customer.create!(:first_name => "Fake", :last_name => "User", 
                               :email => "user84@yahoo.com", :password => "test",
                               :secret_question => 5, :secret_answer => "yes")
-        @user.save!
         post :create_from_secret, secret_question_params
       end
 
