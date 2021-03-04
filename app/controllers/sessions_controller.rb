@@ -34,7 +34,6 @@ class SessionsController < ApplicationController
     create_session do |params|
       permitted = secret_question_params
       @email = params[:email]
-      puts params.as_json
       u = Customer.authenticate_from_secret_question(@email, permitted, params[:answer])
       if u.nil? || !u.errors.empty?
         note_failed_signin(@email, u)
