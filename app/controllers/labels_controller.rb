@@ -44,12 +44,7 @@ class LabelsController < ApplicationController
   # https://api.rubyonrails.org/v6.1.0/classes/ActiveModel/Errors.html#method-i-add
   def label_params
     params.require(:label_name)
-<<<<<<< HEAD
     permitted = params.permit(:label_name)
     { name: permitted[:label_name] }
-=======
-    params.permit(:label_name)
-    { name: params[:label_name] }
->>>>>>> 6c6748f8 (strong params for labels completed with additional testing for all label and label controllers)
   end
 end
