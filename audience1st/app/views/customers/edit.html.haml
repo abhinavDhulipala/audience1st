@@ -1,0 +1,13 @@
+= themed
+
+%h1.text-center Contact Info for #{@customer.full_name}
+
+%br
+= form_tag customer_path(@customer), :method => :put do
+  = render :partial => 'billing_address', :locals => {:customer => @customer}
+  = render 'extra'
+  = render 'form_admin' if @gAdminDisplay
+  %br
+  %br
+  = submit_tag 'Save Changes', :class => 'btn btn-success'
+  = link_to 'Cancel', customer_path(@customer), :class => 'btn btn-secondary'

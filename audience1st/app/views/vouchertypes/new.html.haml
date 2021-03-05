@@ -1,0 +1,8 @@
+= form_tag vouchertypes_path, :class => 'form' do
+  %fieldset#new_vouchertype
+    %legend New Voucher Type
+    = render :partial => 'form' 
+    = submit_tag "Create", :class => 'btn btn-success'
+    = submit_tag "Create & Add Another", :class => 'btn btn-success'
+    = link_to 'Cancel', vouchertypes_path, :class => 'btn btn-secondary'
+

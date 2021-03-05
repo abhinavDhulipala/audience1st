@@ -1,0 +1,3 @@
+%a.a1tooltip{:onclick =>  '$("span.a1tooltip").css("visibility","hidden"); $(this).find("span.a1tooltip").css("visibility","visible"); event.preventDefault();' }
+  ?
+  %span.a1tooltip{:onclick => '$("span.a1tooltip").css("visibility","hidden"); event.stopPropagation(); event.preventDefault(); '}= popup_help

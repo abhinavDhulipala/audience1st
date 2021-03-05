@@ -1,0 +1,27 @@
+= form_tag shows_path, :method => :get, :class => 'form-inline' do
+  %p.lead
+    Listing shows for season:
+    = select_tag 'season', options_for_seasons(@earliest,@latest,@season), :onchange => 'this.form.submit();', :class => 'form-control'
+
+%table.a1-table.table.table-hover
+  %thead
+    %tr
+      %th Show Name
+      %th Link
+      %th Run Dates
+      %th List Date
+      %th # Perfs
+      %th
+  %tbody
+    - @shows.each do |show|
+      - num_perfs = show.showdates.size
+      %tr
+        %td= link_to show.name, edit_show_path(show)
+        %td= purchase_link_popup link_icon, link_to_show_tickets(show), show.name
+        %td.text-center= humanize_date_range(show.opening_date, show.closing_date) if num_perfs > 0
+        %td= show.listing_date.to_formatted_s(:showtime)
+        %td.text-center= num_perfs if num_perfs > 0
+        %td
+          - if num_perfs.zero?
+            = button_to 'Delete', show_path(show), :method => :delete, :data => {:confirm => "Delete '#{show.name}': are you sure?"}, :class => 'btn btn-sm btn-danger' 
+= link_to 'Add New Show', new_show_path(:season => @season), :class => 'btn btn-primary'

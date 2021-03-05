@@ -1,0 +1,49 @@
+= form_for @show, :html => {:class => 'form', :id => 'show'} do |f|
+  .form-row
+    .col-md-4.form-group
+      %label.col-form-label{:for=>:show_name} Show Name
+      = f.text_field 'name', :class => 'form-control'
+    .col-md-2.form-group
+      = popup_help_for :show_season
+      %label.col-form-label{:for=>:show_season} Season
+      - if @show.new_record?
+        .form-inline= select_tag 'show[season]', options_for_seasons([Time.this_season,@show.season].min, Time.this_season + 3, @show.season), :class => 'form-control'
+      - else
+        = text_field_tag 'show[season]', Option.humanize_season(@show.season), :disabled => true, :class => 'form-control a1-passive-text-input'
+    .col-md-4.form-group    
+      = popup_help_for :show_is_special
+      %label.col-form-label{:for=>:show_event_type} Event type
+      = f.select 'event_type', Show::TYPES, {}, {:class => 'form-control'}
+
+  .form-row
+    .col-md-4.form-group
+      = popup_help_for :show_listing_date
+      %label.col-form-label{:for=>:show_listing_date} List starting
+      .form-inline= f.date_select 'listing_date', {}, {:class => 'form-control date mx-1'}
+    .col-md-6.form-group
+      = popup_help_for :show_landing_page_url
+      %label.col-form-label{:for=>:show_landing_page_url} Landing page URL (optional)
+      = f.text_field 'landing_page_url', :class => 'form-control'
+
+  .form-row
+    .col-md-6.form-group
+      = popup_help_for :show_description
+      %label.col-form-label{:for => :show_description} Description (optional)
+      = f.text_area 'description', :maxlength => 255, :class => 'form-control'
+    .col-md-6.form-group
+      %label.col-form-label{:for=>:show_patron_notes} Special notes to patron (in confirmation email); blank if none
+      = f.text_area 'patron_notes', :maxlength => 255, :class => 'form-control'
+
+  .form-row
+    .col-md-6.form-group
+      = popup_help_for :show_sold_out_dropdown_message      
+      %label.col-form-label{:for => :show_sold_out_dropdown_message} If show is sold out, dropdown says:
+      = f.text_field 'sold_out_dropdown_message', :class => 'form-control'
+    .col-md-6.form-group
+      = popup_help_for :show_sold_out_customer_info
+      %label.col-form-label{:for => :show_sold_out_customer_info} If show is sold out, information for patron
+      = f.text_field 'sold_out_customer_info', :maxlength => 255, :class => 'form-control'
+
+  .form-row
+    = f.submit :class => 'btn btn-success mx-2'
+    = link_to 'Back to List of Shows', shows_path(:season => @show.season), :class => 'btn btn-secondary'

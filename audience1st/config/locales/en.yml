@@ -1,0 +1,333 @@
+en:
+  reports:
+    revenue_details:
+      csv_error: >
+        Unexpected error RRE1 for item %{item}: %{message}
+
+  seatmaps:
+    confirm_delete: >
+      Delete '%{name}' seatmap: are you sure?
+
+  showdates:
+    added:
+      zero: No new performances were added.
+      one: One performance was successfully added.
+      other: "%{count} performances were successfully added."
+
+    already_exist: >
+      The following performances were not created because they already exist: %{dates}
+
+    zero_max_sales: >
+      You've added performance(s) whose max %{advance}sales are set to
+      zero, meaning no tickets can be purchased. If this isn't what
+      you intended, you can click on the performance date in the Show
+      Details view to edit it.
+
+    validations:
+      cannot_exceed_house_cap: >
+        cannot exceed the house capacity for an in-theater performance.
+
+      date_outside_season: >
+        Since this show belongs to the %{season} season, the performance date must be
+        between %{from} and %{to}.
+
+      already_has_stream_anytime: >
+        This show already has a "stream anytime" performance.  Please add or modify 
+        its redemptions rather than creating another "stream anytime" performance.
+        
+      cannot_change_seating_type: >
+        Cannot change performance from reserved to general admission or vice versa because 
+        reservations have already been made.
+
+      cannot_change_seatmap: >
+        Seat map cannot be changed because the following patrons have reserved seats
+        that don't exist in the new seat map.  (Suggestion: Shift-click on each patron name to
+        visit their My Tickets page in a new window.)
+
+    errors:
+      invalid: >
+        No performances were added, because the %{date} performance had errors: %{errors}
+
+
+
+  email:
+
+    success: >
+      An email confirmation was sent to %{addr}.  If you don't
+      receive it in a few minutes, please make sure 'audience1st.com'
+      is on your trusted senders list, or the confirmation email may
+      end up in your Junk Mail or Spam folder.
+
+    error: >
+      Your transaction was successful, but we couldn't send an email confirmation to %{addr}.
+      The error message was: %{message}
+
+    not_attempted: >
+      Email confirmation was NOT sent because there isn't a valid email address in your Contact Info.
+
+  import:
+
+    goldstar:
+      invalid_offer_id: >
+        This will-call list is invalid because at least one purchase (for %{name}) refers to the
+        nonexistent offer ID %{offer_id}.
+      empty_claims_list: >
+        Warning: purchase ID %{purchase_id} for %{name} has an empty 'claims' list.  This is
+        probably a bug on Goldstar's part, but check with this customer to see whether they
+        successfully completed their purchase on Goldstar.
+                    
+    import_cancelled: >
+      Import of '%{filename}' cancelled.
+
+    confirm_delete_import:
+      Are you sure you want to cancel this in-progress import?
+
+    already_imported: >
+      This list was already imported, on %{date}.      
+
+    wrong_file_type: >
+      This appears to be a %{type} file, but you must upload a %{desired_type} file.
+
+    wrong_show: >
+      This list contains an order for '%{import_show}' on %{performance_date},
+      but the show name associated with that date is '%{actual_show}'.
+
+    capacity_exceeded: >
+      For the %{performance_date} performance, adding these %{num_to_import} vouchers to 
+      current sales of %{current_sales} will exceed the %{capacity_control} of %{capacity}.
+
+    max_sales_for_type_exceeded: >
+      For the %{performance_date} performance,
+      importing these %{num_to_import} '%{vouchertype}' vouchers
+      will exceed your intended limit of %{max_sales_for_type} vouchers of this type.
+
+    showdate_not_found: >
+      This will-call list is for %{date}, but there is no performance listed for that date and time.
+
+    vouchertype_not_found: >
+      This will-call list includes tickets priced at %{price}, but no voucher type 
+      for the %{season} season whose name begins with '%{vendor}' could be found at this price.
+
+    redemption_not_found: >
+      The will-call list could not be imported because at least one transaction references 
+      the '%{vouchertype}' voucher type and the %{performance} performance, but 
+      no redemption for this voucher type could be found for this performance.
+
+    success:
+      num_tickets:
+        zero:  No tickets were imported
+        one:   One ticket was imported
+        other: "%{count} tickets were imported"
+      total_customers: 
+        one:   for one customer.
+        other: for %{count} total customers.
+      existing_customers: 
+        zero:  None of the customers were already in your list.
+        one:   One customer was already in your list.
+        other: "%{count} customers were already in your list."
+      new_customers_created: 
+        zero:  No new customers were created.
+        one:   One new customer was created.
+        other: "%{count} new customers were created."
+
+    import_failed: >
+      NO orders were imported because of problems completing the import: %{message}
+
+  checkins:
+
+    no_showdates: >
+      There are no upcoming performances eligible for check-in right now.
+
+  customers:
+
+    confirm_delete: >
+      Selected customer(s) will be PERMANENTLY deleted, and their transactions will be linked
+      to the Anonymous Customer.  This action CANNOT BE UNDONE.  OK to proceed?
+
+  season_setup:
+
+    errors:
+      no_performances_exist: >
+        You must add some performances before you can add or change ticket types for performances.
+      no_vouchertypes_exist: >
+        No matching voucher types found for the %{season} season. 
+      no_redemptions_without_vouchertypes: >
+        No matching voucher types found for the %{season} season.
+        Please create voucher types before adding ticket redemptions to performances of this show.
+
+    vouchers_already_issued: >
+      %{num} vouchers of this voucher type have already been issued.  Any changes you make
+      will be retroactively reflected to all of them.  If this is not what you want, click Cancel below.
+
+    options_apply_to_all_selected_performances: >
+      The following options will be applied to all the performances selected at
+      the bottom of the page.
+
+    apply_to_which_performances: >
+      Apply the above changes to which dates:
+
+    confirm_delete_performance: >
+      Delete this performance: are you sure?
+
+    confirm_delete_redemption: >
+      Don't allow "%{type}" tickets for this performance: are you sure?
+
+    must_select_vouchertypes: >
+      You must select 1 or more voucher types to add.
+
+    must_select_showdates: >
+      You must select 1 or more showdates to apply these changes to.
+
+    no_valid_vouchers_added: >
+      NO changes were made, because some voucher type(s) could not be added to some show 
+      date(s)--try adding them one at a time to isolate specific errors.  %{error_message}
+
+    no_comps_defined: >
+      You must define some comp voucher types first.
+
+  login:
+
+    login_failed: >
+      We're so sorry, but we couldn't log you in:
+
+    no_such_email: >
+      We can't find that email in our database.  Maybe you signed up with a different one?
+      You can also continue with your purchase and setup a new account as you checkout.
+
+    bad_password: >
+      The password seems to be incorrect.  If you forgot your password, click 'Reset my password' and we will email
+      you a new password within 1 minute.
+
+    email_or_password_blank: >
+      You need to provide your email and password.
+
+    setup_secret_question_message: >
+      You can now setup a secret question to verify your identity in case you forget your password.
+      Click Change Password above to setup your secret question.
+
+    no_secret_question: >
+      %{username} never set up a secret question.
+
+    wrong_answer: >
+      That isn't the answer you provided when you selected your secret question.
+
+    real_login_required: >
+      This email address has previously been used to login with a password.
+      Please provide the email and password to continue, or use one of the Reset Password links
+      below if you've forgotten it.  You can also continue as a guest by using a different email address.
+
+    change_password_now: >
+      Please change your password now.
+
+    send_magic_link: >
+      Please enter the email with which you originally signed up, and we will email you a link to reset your password.
+
+  reservations:
+    errors:
+      no_showdate: >
+        Please select a date.
+      no_vouchers: >
+        You must select at least 1 seat to reserve.
+      seat_count_mismatch: >
+        Seat list length does not match number of vouchers to reserve.
+      seats_taken: >
+        One or more seats you selected are unavailable. Please try again.
+      cannot_be_changed: >
+        Some reservations could NOT be cancelled.  Please review your reservations below
+        and contact a box office agent if you need assistance.
+      reservation_failed: >
+        Your reservations could not be completed: %{message}
+      not_your_voucher: >
+        That voucher isn't yours.
+        
+    confirm_cancellation: >
+      Are you sure? Click OK to continue with cancelling this reservation, or Cancel to leave things as they are.
+
+    special_seating_requests: >
+      Any special seating/mobility needs?
+
+    cancelled: >
+      %{canceled_num} of your reservations have been cancelled.
+
+  store:
+
+    credit_card_security_notice: >
+      We do not store or access your card number.
+      Our transactions are securely processed through Stripe.
+
+    accessible_seating_prompt: >
+      Special seating needs?
+
+    accessible_seating_description: >
+      Please describe (wheelchair, no stairs, etc.)
+
+    accept_terms_of_sale: >
+      By completing your order, you agree to the terms of sale.
+    
+    gift_recipient_on_file: >
+      We have the gift recipient's address and phone number on file.
+    
+    gift_matching_email_last_name_diff_address: >
+      We recognize that name and email address, but we have a
+      different mailing address and/or phone number on file for this
+      person. Please note that we will use our contact information to
+      contact them. If you believe this is a problem, please contact
+      the box office after completing this gift order.
+
+    errors:
+
+      gift_matching_email_diff_last_name: >
+        We recognize that email address, but it matches a customer with a different last name.
+        Please correct the last name of the customer, or else leave the email address blank
+        and provide a contact address and phone number instead.
+
+      gift_diff_email_notice: >
+        Please enter a gift recipient email different from your own.
+
+      guest_checkout_not_allowed:  >
+        Sorry, guest checkout is unavailable for this order.  Please
+        create an account to continue checkout.
+
+      empty_order: >
+        There are no items in your order.
+
+      not_enough_seats_selected: >
+        Number of seats selected (%{seats}) doesn't match number of tickets specified (%{tickets})
+
+      not_enough_seats:
+        zero: Sorry, no seats left for this performance.
+        one:  Sorry, Only 1 seat left for this performance.
+        other: Sorry, only %{count} seats left for this performance.
+
+  options:
+
+    leave_page_warning: >
+      If you leave this page, changes made since loading the page may be lost.
+      Click OK to leave anyway, or Cancel to stay on this page and save your changes first.
+
+    integration_warning: >
+      Integration options can now be edited. Proceed with care.
+      You must click 'Update Settings' to save your changes before you
+      can test integrations with the new values.
+
+    enable_maintenance_warning: >
+      You're about to restrict access to Audience1st only to Staff
+      or higher level users. Patrons and non-staff users will see a
+      message saying the site is temporarily under maintenance.  You can
+      resume normal operation later
+      by changing Staff Access Only back to "No".  Click OK to
+      restrict access to Staff only, or Cancel to leave things as they
+      are.  A dashed yellow border will appear while the site is in
+      Staff Access Only mode.
+
+    disable_maintenance_warning: >
+      You're about to turn off Staff Access Only and make Audience1st
+      available to all users.
+      Click OK to confirm, or Cancel to leave Audience1st in "staff access only" mode.
+
+    change_basic_settings_warning: >
+      Changing these options affects the basic operation and
+      appearance of your Audience1st installation.  Please be sure you
+      know what you're doing before changing these, and to be safe,
+      before changing a value make a note of the old value.  Click "Allow
+      Changes" to enable editing of these options.

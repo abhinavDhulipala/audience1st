@@ -1,0 +1,71 @@
+= themed
+= sales_banners_for(@what, @subscriber, @next_season_subscriber)
+
+- if @seatmap_info
+  = hidden_field_tag 'seatmap_info', @seatmap_info
+
+!!!
+%html
+  %head
+    = javascript_include_tag "check_negative_donation"
+
+#store
+  %h1.text-center
+    = label_for_page_header @what
+    %span.a1-text-small= "(Using Promo Code: #{h(@promo_code)})" if @promo_code
+
+  = render :partial => 'event_types'
+
+  #ticket_menus
+    = form_tag process_cart_path(@customer), :autocomplete => 'off' do
+      - if @sd
+        = hidden_field_tag 'showdate_id', @sd.id
+      = hidden_field_tag 'what', h(@what)
+      - if @nothing_to_buy
+        #show_description.text-center.border.border-danger There are no #{label_for_page_header @what} on sale at this time.
+      - else
+        = render :partial => 'ticket_menus'
+
+      = render :partial => 'retail' if @gAdminDisplay
+
+      .form-group.form-row  
+        %label.col-form-label.text-right.col-sm-4{:for => :donation} Additional tax-deductible donation
+        .input-group.col-md-2.col-xs-2
+          = text_field_tag 'donation', '', :type => 'number', :size => 4, :class => 'itemQty text-right form-control form-control-sm a1-no-spinner'
+          .input-group-append
+            %span.input-group-text.form-control-sm .00
+        .col-sm-6
+
+      .form-group.form-row#orderTotal
+        %label.col-form-label.text-right.col-sm-4.strong{:for=>:total} Order Total
+        = text_field_tag 'total', '0.00', :size => 6, :disabled => true, :class => 'text-right form-control form-control-sm col-md-1 col-sm-2'
+        .col-md-6
+
+      - if Option.allow_gift_tickets? and @logged_in
+        .form-group.form-row
+          .col-md-4
+          .form-check.col-md-8
+            = check_box_toggle 'gift', false, 'submit','Continue to Recipient Information','Continue to Billing Information',:class => 'form-check-input'
+            %label.form-check-label{:for=>:gift} This order is a gift
+          
+      - if @seatmap_info
+        .form-row.reserved-seating
+          .col-md-4.offset-sm-4
+            = button_tag 'Choose Seats...', :disabled => true, :class => 'btn btn-outline-primary btn-block show-seatmap'
+            = submit_tag 'Continue to Billing Information', :id => 'submit', :disabled => true, :class => 'btn btn-block btn-success text-center'
+          .col-sm-3.text-center= text_area_tag 'seats', '', :rows => 3, :readonly => 'readonly', :class => 'seat-display a1-passive-text-input'
+      - else
+        .form-row
+          .col-md-4.offset-md-4
+            = submit_tag 'Continue to Billing Information', :disabled => true, :id => 'submit', :class => 'unreserved btn btn-block btn-success text-center'
+
+    = render :partial => 'components/seatmap'
+    - content_for :javascripts do
+      = javascript_include_tag "check_negative_donation"
+:javascript
+  $("#donation").keypress(function(event) {
+    if (String.fromCharCode(event.keyCode) === '-') {
+        alert("You cannot donate a negative amount.")
+        event.preventDefault();
+    }
+  })

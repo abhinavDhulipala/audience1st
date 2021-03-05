@@ -1,0 +1,18 @@
+<div class="a1-email-footer">
+  <p>
+    If you have any questions about the above, 
+    please contact the box office
+    <% if !Option.help_email.blank? -%>
+    at <a href="mailto:<%= Option.box_office_email %>"><%= Option.box_office_email %></a> or
+    <% end -%>
+    by calling <%= Option.boxoffice_telephone %>.
+  </p>
+  
+  <p>Thank you for your patronage!</p>
+
+  <p class="a1-powered-by">
+    <span class="a1-venue-name"><%= @venue %></span>
+    Powered by Audience1st
+  </p>
+</div>
+

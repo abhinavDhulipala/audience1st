@@ -1,0 +1,50 @@
+.card[order]
+  .card-header
+    %button.a1-flippy.collapsed.d-inline{:href => "#details_order_#{order.id}", 'data-toggle' => 'collapse'}
+    .d-inline= one_line_order_summary(order)
+  .card-body.collapse[order, :details]
+    = form_tag order_path(order), :method => :put do
+      .form-row
+        .col-md-3
+          %label.col-form-label Purchaser: 
+          = link_to_customer order.purchaser
+        .col-md-3
+          %label.col-form-label Gift?
+          = order.gift? ? link_to_customer(order.customer) : 'No'
+      .form-row
+        .col-md-3
+          %label.col-form-label Order total:
+          = number_to_currency order.total_price
+          (#{humanize(order.purchase_medium)})
+        - unless @printable
+          .col-md-2
+            %label.col-form-label Refundable:
+            = order.refundable? ? "Yes" : "No"
+
+      %table.a1-table.a1-force-fullwidth.table.table-hover
+        %thead
+          %tr
+            %th{:colspan => 2} Item#
+            %th Customer Holding Item
+            %th Paid
+            %th Show or Account Code
+            %th Comments
+        %tbody
+          - order.items.each do |item|
+            %tr
+              %td= check_box_tag("items[#{item.id}]",1,false, :class => 'itemSelect') if item.cancelable? && order.refundable? && !@printable
+              %td= item.id
+              %td= link_to_customer item.customer
+              %td= number_to_currency(item.amount)
+              %td= item.one_line_description
+              %td= item.comments
+
+      - if @printable
+        %h2.text-center #{Option.venue} thanks you for your order!
+      - else
+        = link_to 'Printable Receipt', order_path(order, :printable => 1), {:target => '_blank', :class => 'btn btn-primary'}
+        = link_to 'Back to Customer', customer_path(order.customer), :class => 'btn btn-primary'
+        - if order.refundable?
+          - submit_name = (order.purchase_medium == :credit_card ? 'Refund' : 'Cancel')
+          = submit_tag "#{submit_name} Checked Items", 'data-confirm' => deletion_warning_for(order), :class => 'btn btn-danger', :id => 'refund'
+

@@ -1,0 +1,33 @@
+- if (@gAdminDisplay || group.cancelable?)
+  .form-row.border-top.border-secondary.align-items-center
+    = form_tag cancel_multiple_customer_vouchers_path(@customer), :method => :post, :autocomplete => 'off', :class => 'form-inline a1-force-fullwidth'   do
+      = hidden_field_tag 'voucher_ids', group.voucherlist, :id => nil
+      .col-1.text-center.cancelnumber= menu_or_static_text 'cancelnumber', group, {:id => nil, :class => 'form-control'}
+      .col-3.text-center= group.name
+      .col-4.text-center
+        %span.showName= group.showdate.name
+        %br
+        %span.showDate= group.showdate.printable_date_with_description
+      .col-2.text-center= group.seats
+      .col-2.text-center= submit_tag 'Cancel', 'data-disable-with' => 'Cancelling...', :class => 'btn btn-danger', 'data-confirm' => t('reservations.confirm_cancellation') |
+
+- else
+  .form-row.border-top.border-secondary.align-items-center
+    .col-1.text-center= group.size
+    .col-3.text-center= group.name
+    .col-4.text-center
+      %span.showName= group.showdate.name
+      %br
+      %span.showDate= group.showdate.printable_date_with_description
+    .col-2.text-center= group.seats
+
+- if @gAdminDisplay
+  .form-row.admin
+    = form_tag update_comment_customer_voucher_path(@customer, group.vouchers), :method => 'put', 'data-remote' => true, :autocomplete => 'off', :class => 'save_comment form-inline a1-force-fullwidth' do
+      = hidden_field_tag 'voucher_ids', group.voucherlist, :id => nil
+      .col-2 Staff comments
+      .col-10
+        .input-group
+          = text_field_tag 'comments', Voucher.combined_comments(group.vouchers), :id => nil, :class => 'form-control form-control-sm'
+          = submit_tag '&#x2714;'.html_safe, :name => 'save', :id => nil, 'data-disable-with' => '...', :class => 'btn btn-sm btn-outline-success'
+      

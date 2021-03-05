@@ -1,0 +1,332 @@
+/* in testing or sandbox mode, body should look different */
+
+html {
+    font-size: smaller;
+}
+body.maintenance {
+    border: 8px dashed yellow;
+}
+
+#content.a1-plain {
+    background-color: white;
+}
+
+#footer {
+    text-align: center;
+}
+
+/* prevent Webkit-based browsers from showing 'spinner' arrows on number fields */
+input[type=number].a1-no-spinner::-webkit-inner-spin-button, 
+input[type=number].a1-no-spinner::-webkit-outer-spin-button {
+    -webkit-appearance: none; 
+    margin: 0; 
+}
+
+.a1-date {
+    min-width: 8em !important;
+}
+.a1-amount {
+    min-width: 5em !important;
+}
+
+.a1-force-fullwidth {
+    width: 100% !important;
+}
+
+.a1-passive-text-input {
+    resize: none;
+    box-shadow: none;
+    border: none;
+    text-align: center;
+    outline-width: 0;
+    background-color: inherit;
+}
+
+/* 'x' buttons for deleting things */
+.a1-x-icon {
+    color: red !important;
+    outline: none;
+    background-color: inherit;
+    box-shadow: none;
+    text-align: center;
+}
+
+.a1-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 0;
+    margin-bottom: 10px;
+    margin-top: 4px;
+}
+
+.a1-table thead {
+    background-color: #EEE;
+    color: black;
+}
+.a1-table th {
+    margin: 0;
+    padding: 3px;
+    font-weight: bold;
+    text-align: center;
+    background: #333;
+    color: #fff;
+}
+.a1-table td {
+    vertical-align: top;
+    padding: 1px 2px;
+}
+/*
+ * Styles used by online check-in table only
+ */
+table#checkin td.maincolumn {
+    vertical-align: middle;
+}
+table#checkin td {
+    border-top: 1px solid black;
+}
+
+/* Countdown timer for order completion */
+.timer {
+    text-align: center;
+}
+span#timer {
+    font-weight: bold;
+    font-family: "Lucida Console", Monaco, monospace;
+}
+
+
+
+/* Additional field qualifiers for errors etc */
+
+.validationError {
+    color: red;
+}
+
+.highlighted {
+    background-color: #9f9;
+}
+
+.fieldWithErrors {
+    padding: 2px;
+    color: white;
+    background-color: red;
+    display: table;
+}
+
+.disabledField {
+    background-color: #e6e6e6;
+    border: none;
+    color: #000;
+    font-weight: bold;
+}
+
+
+/***********************************************************************
+ * Styles below this point are never seen by regular customers
+ **********************************************************************/
+
+.a1-text-large {
+    font-size: 1.5rem;
+}
+.a1-text-medium {
+    font-size: 1.25rem;
+}
+.a1-text-small {
+    font-size: 0.8em;
+}
+
+
+.admin {
+    background-color: #eff19e;
+    color: black;
+    display: inline-block;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Pagination of customer list */
+.pagination-container {
+    text-align: center;
+    padding-bottom: 1ex;
+}
+
+.pagination {
+    width: 95%;
+    margin: 0 auto; /* centered */
+    display: block;
+}
+.pagination form {
+    float: left;
+}
+.pagination a, .pagination span, .pagination em {
+    padding: 0.2em 0.5em;
+    display: block;
+    float: left;
+    margin-right: 1px; }
+.pagination .disabled {
+    color: #999999;
+    border: 1px solid #dddddd; }
+.pagination .current {
+    font-style: normal;
+    font-weight: bold;
+    background: #2e6ab1;
+    color: white;
+    border: 1px solid #2e6ab1; }
+.pagination a {
+    text-decoration: none;
+    color: #105cb6;
+    border: 1px solid #9aafe5; }
+.pagination a:hover, .pagination a:focus {
+    color: #000033;
+    border-color: #000033; }
+.pagination .page_info {
+    background: #2e6ab1;
+    color: white;
+    padding: 0.4em 0.6em;
+    width: 22em;
+    margin-bottom: 0.3em;
+    text-align: center; }
+.pagination .page_info b {
+    color: #000033;
+    background: #6aa6ed;
+    padding: 0.1em 0.25em; }
+.pagination:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden; }
+* html .pagination {
+    height: 1%; }
+*:first-child + html .pagination {
+    overflow: hidden; }
+
+/* Flippy buttons toggle their text when collapse/expand */
+button.a1-flippy {
+    display: block;
+    width: 2em;
+    text-align: center;
+    background-color: none;
+    border: none;
+}
+button.a1-flippy.collapsed:before {
+    content: '\2335';
+  }
+button.a1-flippy:before {
+    content: '\2303';
+ }
+/* Make larger for mobile/small screens */
+@media screen and (max-width: 768px) {
+    .a1-flippy, .a1-purchase-link {
+        font-size: larger;
+    }
+}
+
+/* "purchase link" icon - larger for mobile */
+
+/* Inline form buttons */
+.inline {
+    display: inline;
+}
+
+/* Printable receipts */
+/* plain style for receipts */
+body#receipt {
+    background: none;
+    font-family: Helvetica, Arial, sans-serif;
+    color: black;
+    border: 2px solid black;
+    padding: 0.5em;
+    margin: 0.5em;
+    font-size: larger; }
+body#receipt * {
+    color: black;
+    background: none; }
+
+/* Make autocomplete menu not be infinitely long */
+.ui-autocomplete {
+    max-height: 50ex;
+    overflow-y: auto;
+    /* prevent horizontal scrollbar */
+    overflow-x: hidden;
+}
+/* IE 6 doesn't support max-height
+ * we use height instead, but this forces the menu to always be this tall
+ */
+* html .ui-autocomplete {
+    height: 50ex;
+}
+
+.customer_label {
+    font-size: 90%;
+    background-color: MintCream;
+    margin: 1px;
+    padding: 1px;
+}
+
+tr.staff {
+    font-style: italic;
+}
+tr.invalid {
+    color: red;
+}
+tr.subscriber {
+    background-color: #9f9;
+}
+
+/*
+ * Credit card payment error message
+ */
+#payment_errors {
+    background-color: red;
+    color: white;
+    font-size: larger;
+    font-weight: bold;
+    padding: 0 2em;
+}
+
+span.a1-checkin-button {
+    text-align: center;
+    font-family: "Lucida Sans Typewriter", "Andale Mono", "Courier", "Courier New", fixed;
+    margin: 0;
+    padding: 2px;
+}
+span.a1-checkin-button:hover, span.a1-checked-in {
+    background-color: yellow;
+}
+
+/*
+ * Door list
+ */
+
+#a1-doorlist {
+    background-color: white;
+    padding: 1em;
+}
+#a1-doorlist table {
+    width: 100%;
+}
+#a1-doorlist table, #a1-doorlist th, #a1-doorlist td {
+    font-size: 1.5rem;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+/* Index letter column (style applies to TD) */
+#a1-doorlist .maincolumn {
+    border: none;
+    background-color: white;
+    font-size: large;
+    font-weight: bold;
+    text-align: center;
+    width: 3em;
+}
+@media screen {  #a1-doorlist .maincolumn {  color: red;     } }
+
+/* Subscribers are hilited on door list on screen, but bolded in print */
+@media screen {  #a1-doorlist .subscriber {  background-color: #9f9;  } }
+@media print  {  #a1-doorlist .subscriber {  font-style: italic;  } }
+
+/* Don't underline links in printed door list */
+@media print { #a1-doorlist a { text-decoration: none; color: black; } }
