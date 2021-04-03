@@ -21,6 +21,7 @@ Scenario: Setup new show
   | Special notes to patron (in confirmation email); blank if none | Enjoy                        |
   | If show is sold out, dropdown says:                            | Sold Out!                    |
   | If show is sold out, information for patron                    | Tough                        |
+  When I select "12 hours" from "show_reminder_type"
   And I press "Create Show"
   Then I should be on the show details page for "Fiddler on the Roof"
   And the show "Fiddler on the Roof" should have the following attributes:
