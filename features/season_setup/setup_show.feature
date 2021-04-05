@@ -16,12 +16,12 @@ Scenario: Setup new show
   | Show Name                                                      | Fiddler on the Roof          |
   | List starting                                                  | select date "2010-03-11"     |
   | Event type                                                     | select "Regular Show"        |
+  | Send reminder email to ticket holders                          | select "12 hours"            |
   | Landing page URL (optional)                                    | http://mytheatre.com/fiddler |
   | Description (optional)                                         | A classic                    |
   | Special notes to patron (in confirmation email); blank if none | Enjoy                        |
   | If show is sold out, dropdown says:                            | Sold Out!                    |
   | If show is sold out, information for patron                    | Tough                        |
-  When I select "12 hours" from "show_reminder_type"
   And I press "Create Show"
   Then I should be on the show details page for "Fiddler on the Roof"
   And the show "Fiddler on the Roof" should have the following attributes:
