@@ -133,6 +133,7 @@ Given /the URI "(.*)" is (not )?readable/ do |uri,no|
   end
 end
 
+#step definitions to enable and disable
 When /^I toggle the reminder email feature$/ do
   enable_toggle('reminder_emails')
   #puts Option.feature_enabled?('reminder_emails')

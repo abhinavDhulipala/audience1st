@@ -10,8 +10,8 @@ Background:
 
 Scenario: Setup new show
 
-  When I go to the New Show page
-  And I toggle the reminder email feature
+  When I toggle the reminder email feature
+  And I go to the New Show page
   And I fill in the "show" fields as follows:
   | field                                                          | value                        |
   | Show Name                                                      | Fiddler on the Roof          |
