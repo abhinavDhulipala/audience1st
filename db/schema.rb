@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210415011621) do
+ActiveRecord::Schema.define(version: 20210415014347) do
 
   create_table "account_codes", force: :cascade do |t|
     t.string "name",            limit: 255, default: "", null: false
