@@ -191,6 +191,7 @@ ActiveRecord::Schema.define(version: 20210411233938) do
     t.integer  "order_timeout",                                                      default: 5,                                                                                                                               null: false
     t.datetime "last_sweep",                                                         default: '2019-12-24 17:59:23',                                                                                                           null: false
     t.text     "html_email_template",                                                default: "<!DOCTYPE html><html><head></head><body>{{body}}</body></html>",                                                                null: false
+    t.string   "reminder_emails",                                                    default: "Never"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -257,6 +258,7 @@ ActiveRecord::Schema.define(version: 20210411233938) do
     t.string   "sold_out_dropdown_message", limit: 255
     t.string   "sold_out_customer_info",    limit: 255
     t.integer  "season",                                default: 2021,           null: false
+    t.string   "reminder_type",                         default: "Never",        null: false
   end
 
   create_table "ticket_sales_imports", force: :cascade do |t|
