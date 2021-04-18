@@ -19,6 +19,8 @@ gem 'i18n'
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails', '= 4.0.5'
 gem 'jquery-ui-rails', '= 5.0.5'
+gem 'json', '~> 2.1'
+gem 'MailchimpMarketing', '~> 3.0.40'
 gem 'nokogiri'
 gem 'protected_attributes'      # remove once we migrate to Strong Parameters
 gem 'responders', '~> 2.0'
