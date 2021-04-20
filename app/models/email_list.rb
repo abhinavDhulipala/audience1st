@@ -11,6 +11,66 @@ class EmailList
     @errors = nil
   end
 
+  # NEW: START =========================================== #
+  def mailchimp_init(key)
+    begin
+      @mailchimp = MailchimpMarketing::Client.new
+      @mailchimp.set_config({
+        :api_key => key,
+        :server => "us1"
+      })
+      response = @mailchimp.ping.get
+      response
+    rescue MailchimpMarketing::ApiError => e
+      puts "Error: #{e}"
+    end
+  end
+
+  # add an event for a list member
+  # want to create an event for a contact when they confirm to attend a show
+  # use the event to setup segments in our mailchimp audience
+  # then we can add contacts to that segment
+  def create_event(id, user_email)
+    begin
+      list_id = id
+      subscriber_hash = get_attendee_hash(user_email)
+
+      # random
+      options = {
+        name: "confirmed_attendee",
+        properties: {
+          show_date: "4-16-2021"
+        }
+      }
+
+      response = @mailchimp.lists.create_list_member_event(
+        list_id,
+        subscriber_hash,
+        options
+      )
+      response
+    rescue MailchimpMarketing::ApiError => e
+      puts "Error: #{e}"
+    end
+  end
+
+  def get_attendee_hash(email)
+    Digest::MD5.hexdigest(email.downcase)
+  end
+
+  # don't do this
+  # batch add/remove list members to static segment
+  def batch_add()
+    begin
+      response = client.lists.batch_segment_members({}, 'list_id', 'segment_id')
+      puts response
+    rescue MailchimpMarketing::ApiError => e
+      puts "Error: #{e}"
+    end
+  end
+
+  # NEW: END ============================================ #
+
   private
 
   def mc
