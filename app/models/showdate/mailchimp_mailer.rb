@@ -15,7 +15,7 @@ class MailchimpMailer
   # want to create an event for a contact when they confirm to attend a show
   # use the event to setup segments in our mailchimp audience
   # then we can add contacts to that segment
-  #
+  # @returns a response object of the mailchimp call or a list of errors
   def create_event(id, user_email)
     begin
       list_id = id
@@ -23,9 +23,9 @@ class MailchimpMailer
 
       # random
       options = {
-        name: "confirmed_attendee",
+        name: Segments, # We need to get the name from either a segment or a Relation with Showadte's corresponding customer
         properties: {
-          show_date: "4-16-2021"
+          show_date: Showdate.find().thedate
         }
       }
 
