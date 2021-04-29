@@ -16,10 +16,12 @@ class MailchimpMailer
   # use the event to setup segments in our mailchimp audience
   # then we can add contacts to that segment
   # @returns a response object of the mailchimp call or a list of errors
-  def create_event(id, user_email)
+  #
+  def create_event(id, show_name, show_date)
     begin
       list_id = id
-      subscriber_hash = get_attendee_hash(user_email)
+      subscriber_hash = get_attendee_hash
+      (user_email)
 
       # random
       options = {
@@ -43,10 +45,14 @@ class MailchimpMailer
     Digest::MD5.hexdigest(email.downcase)
   end
 
-  def create_segment(id)
+  def create_segment(id, show_name, show_date)
+    list_id = id
     @mailchimp.lists.create_segment(
-      list_id
+      list_id: list_id,
+      name: "#{show_name}_#{show_date}",
+      options: options
     )
+
 
   end
 

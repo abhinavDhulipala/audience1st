@@ -19,6 +19,8 @@ gem 'i18n'
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails', '= 4.0.5'
 gem 'jquery-ui-rails', '= 5.0.5'
+gem 'json', '~> 2.1'
+gem 'MailchimpMarketing', '~> 3.0.40'
 gem 'nokogiri'
 gem 'protected_attributes'      # remove once we migrate to Strong Parameters
 gem 'responders', '~> 2.0'
@@ -26,6 +28,7 @@ gem 'attr_encrypted'            # attr_encrypted must load AFTER protected_attri
 gem 'rake'
 gem 'stripe'
 gem 'will_paginate'
+gem 'sendgrid-ruby'
 
 # asset pipeline
 gem 'sprockets-rails', :require => 'sprockets/railtie'
@@ -66,7 +69,7 @@ group :development do
   # gem 'ruby-prof'
   # gem 'stackprof'
   gem 'web-console', '~> 2.0'
-  gem 'sdoc', '~> 0.4.0'
+  #gem 'sdoc', '~> 0.4.0'
 end
 
 group :development, :test do
@@ -88,7 +91,7 @@ group :development, :test do
   gem 'rspec-html-matchers'
   gem 'rspec-collection_matchers' # should have(n).items, etc
   gem 'rspec-activemodel-mocks'   # mock_model(Customer), etc
-  gem 'sqlite3'
+  gem 'sqlite3', '~> 1.3.6'
   gem 'traceroute'              # find unused routes
   gem 'travis'
 end

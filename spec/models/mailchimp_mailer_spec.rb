@@ -8,7 +8,7 @@ describe MailchimpMailer do
   end
 
   describe 'segment manipulation' do
-
+    @mail_list.create_event(0, '')
 
   end
 end

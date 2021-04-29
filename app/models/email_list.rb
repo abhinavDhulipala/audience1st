@@ -24,7 +24,7 @@ class EmailList
   def segments
     @segments ||=
       mc.lists(default_list_id).
-      segments.retrieve.
+
       body[:segments].select { |seg| seg[:type] == 'static' }
   end
 
