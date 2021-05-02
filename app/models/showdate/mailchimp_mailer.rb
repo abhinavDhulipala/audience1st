@@ -6,7 +6,6 @@ class MailchimpMailer
     @apikey = key || (Option.mailchimp_key rescue nil)
     @disabled = !! @apikey.blank?
     @errors = []
-    @mailchimp = nil
   end
 
   def mailchimp_init(key)
