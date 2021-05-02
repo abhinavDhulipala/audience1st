@@ -1,0 +1,78 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://us1.api.mailchimp.com/3.0/ping
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Basic dXNlcjo1MTQyODg0OTZkNDFlNjA3Yjc3MWYxZWMyNWEzMDU1YS11czE=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - openresty
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '40'
+      Vary:
+      - Accept-Encoding
+      X-Request-Id:
+      - 19d9b988-d7bb-40b0-a294-a4c4b1b399db
+      Link:
+      - <https://us1.api.mailchimp.com/schema/3.0/Ping.json>; rel="describedBy"
+      Date:
+      - Sun, 02 May 2021 23:09:41 GMT
+      Connection:
+      - keep-alive
+    body:
+      encoding: ASCII-8BIT
+      string: '{"health_status":"Everything''s Chimpy!"}'
+    http_version:
+  recorded_at: Fri, 01 Jan 2010 08:00:01 GMT
+- request:
+    method: get
+    uri: https://us1.api.mailchimp.com/3.0/lists/de95a6457e/segments?count=1&exclude_fields=_links
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Basic dXNlcjo1MTQyODg0OTZkNDFlNjA3Yjc3MWYxZWMyNWEzMDU1YS11czE=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - openresty
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '1377'
+      Vary:
+      - Accept-Encoding
+      X-Request-Id:
+      - 218b2208-04ea-491d-9839-49643413570e
+      Link:
+      - <https://us1.api.mailchimp.com/schema/3.0/Lists/Segments/Collection.json>;
+        rel="describedBy"
+      Date:
+      - Sun, 02 May 2021 23:09:41 GMT
+      Connection:
+      - keep-alive
+    body:
+      encoding: ASCII-8BIT
+      string: '{"segments":[{"id":1604350,"name":"Customer","member_count":1,"type":"static","created_at":"2021-04-29T01:51:58+00:00","updated_at":"2021-04-29T01:52:04+00:00","list_id":"de95a6457e","_links":[{"rel":"self","href":"https://us1.api.mailchimp.com/3.0/lists/de95a6457e/segments/1604350","method":"GET","targetSchema":"https://us1.api.mailchimp.com/schema/3.0/Definitions/Lists/Segments/Response.json"},{"rel":"parent","href":"https://us1.api.mailchimp.com/3.0/lists/de95a6457e/segments","method":"GET","targetSchema":"https://us1.api.mailchimp.com/schema/3.0/Definitions/Lists/Segments/CollectionResponse.json","schema":"https://us1.api.mailchimp.com/schema/3.0/Paths/Lists/Segments/Collection.json"},{"rel":"delete","href":"https://us1.api.mailchimp.com/3.0/lists/de95a6457e/segments/1604350","method":"DELETE"},{"rel":"update","href":"https://us1.api.mailchimp.com/3.0/lists/de95a6457e/segments/1604350","method":"PATCH","targetSchema":"https://us1.api.mailchimp.com/schema/3.0/Definitions/Lists/Segments/Response.json","schema":"https://us1.api.mailchimp.com/schema/3.0/Definitions/Lists/Segments/PATCH.json"},{"rel":"members","href":"https://us1.api.mailchimp.com/3.0/lists/de95a6457e/segments/1604350/members","method":"GET","targetSchema":"https://us1.api.mailchimp.com/schema/3.0/Definitions/Lists/Segments/Members/Response.json"}]}],"list_id":"de95a6457e","total_items":2}'
+    http_version:
+  recorded_at: Fri, 01 Jan 2010 08:00:02 GMT
+recorded_with: VCR 3.0.3

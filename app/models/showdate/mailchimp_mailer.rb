@@ -1,10 +1,9 @@
 require 'digest'
 
-
 class MailchimpMailer
   def initialize(key = nil)
     @apikey = key || (Option.mailchimp_key rescue nil)
-    @disabled = !! @apikey.blank?
+    @disabled = !!@apikey.blank?
     @errors = []
   end
 
@@ -18,73 +17,77 @@ class MailchimpMailer
       response = @mailchimp.ping.get
       response
     rescue MailchimpMarketing::ApiError => e
-      puts "Error: #{e}"
       @errors << e
-      Rails.logger.info "mailchimp init: #{@errors}"
+      p Rails.logger.info "mailchimp init: #{@errors}"
     end
-  end
+  end 
 
-  # add an event for a list member
-  # want to create an event for a contact when they confirm to attend a show
-  # use the event to setup segments in our mailchimp audience
-  # then we can add contacts to that segment
-  # @returns a response object of the mailchimp call or a list of errors
   #
-  def create_event(id, user_email)
+  def get_list_id(email)
     begin
-      list_id = id
-      subscriber_hash = get_attendee_hash(user_email)
-
-      # random
-      options = {
-        name: "confirmed_attendee",
-        properties: {
-          show_date: "4-16-2021"
-        }
-      }
-      # retirve list id,
-      # hash email who u want to add to create member event
-      #
-
-      response = @mailchimp.lists.create_list_member_event(
-        list_id,
-        subscriber_hash,
-        options
-      )
-      response
+      # ref: https://github.com/mailchimp/mailchimp-marketing-ruby/blob/master/lib/MailchimpMarketing/api/lists_api.rb#L181
+      response = @mailchimp.lists.get_all_lists({
+                   email: email
+                 })
+      return 'response has no key', true unless response.key? "lists"
+      lists = response["lists"]
+      return response["lists"][0]["id"], false unless lists.empty?
+      e = 'user not in list'
+      @errors << e
+      return e, true
     rescue MailchimpMarketing::ApiError => e
-      puts "Error: #{e}"
+      @errors << e
+      return e, true
     end
   end
 
-  def get_attendee_hash(email)
-    Digest::MD5.hexdigest(email.downcase)
-  end
-
-  def create_segment(id, show_name, show_date)
-    list_id = id
-    @mailchimp.lists.create_segment(
-      list_id: list_id,
-      name: "#{show_name}_#{show_date}",
-      options: options
-    )
-
-  end
-
-  # don't do this
   # batch add/remove list members to static segment
-  def batch_add()
+  # def batch_add()
+  #   begin
+  #     response = client.lists.batch_segment_members({}, 'list_id', 'segment_id')
+  #     puts response
+  #   rescue MailchimpMarketing::ApiError => e
+  #     @errors << e
+  #     return e.to_s, true
+  #   end
+  # end
+
+  def create_segment(list_id, segment_name, emails_to_add)
     begin
-      response = client.lists.batch_segment_members({}, 'list_id', 'segment_id')
-      puts response
+      # 'name' and 'static segment' are required body params
+      # which is an array of emails to be used for a static segment
+      # an empty array will create a static segment without any members
+      response = @mailchimp.lists.create_segment(list_id, { 'name' => segment_name, 'static_segment' => emails_to_add })
+      return response
     rescue MailchimpMarketing::ApiError => e
-      puts "Error: #{e}"
+      @errors << e
+      return e.to_s, true
+    end
+  end
+
+  # https://github.com/mailchimp/mailchimp-marketing-ruby/blob/master/lib/MailchimpMarketing/api/lists_api.rb#L1088
+  # For now this method just gets the first segment in the list. Here as a template for future devs
+  # @returns str(segment_id or error), bool(whether error was encountered)
+  def find_segment(list_id)
+    begin
+      # further body params found here:  https://mailchimp.com/developer/marketing/api/list-segments/list-segments/
+      response = @mailchimp.lists.list_segments(list_id, {
+        exclude_fields: ['_links'],
+        count: 1, # should be removed if we want to scan and filter segments more smartly; defaults to 10
+      })
+
+      segments = response['segments']
+      return 'no segments available', true if segments.nil? or segments.empty?
+      return segments[0]['id'], false
+    rescue MailchimpMarketing::ApiError => e
+      @errors << e
+      return e.to_s, true
     end
   end
 
   private
 
-  def mailchimp_body_for customer
+  def mailchimp_body_for(customer)
     {
       email_address: customer.email,
       status: customer.e_blacklist ? 'unsubscribed' : 'subscribed',
@@ -92,9 +95,7 @@ class MailchimpMailer
     }
   end
 
-  def customer_id_from email
+  def customer_id_from(email)
     Digest::MD5.hexdigest(email.downcase)
   end
-
-
 end
