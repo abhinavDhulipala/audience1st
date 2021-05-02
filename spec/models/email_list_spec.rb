@@ -15,33 +15,6 @@ describe EmailList do
     # StaticSeg1 contains the first 2, StaticSeg2 contains the third
   end
 
-  # NEW: START =========================================== #
-  # Mailchimp Marketing
-  describe 'mailchimp API testing' do
-    it 'pings a correct API response for the first call' do
-      VCR.use_cassette('mailchimp_first_call') do
-        t = EmailList.new
-        response = t.mailchimp_init('ffffffffffffffffffffffffffffffff-us1')
-        expect(response).to eq({
-         "health_status" => "Everything's Chimpy!"
-        })
-      end
-    end
-
-    it 'creates an event' do
-      VCR.use_cassette('create_mailchimp_event') do
-        u = EmailList.new
-        u.mailchimp_init('ffffffffffffffffffffffffffffffff-us1')
-        email = 'kkhus5@berkeley.edu'
-        list_id = 'de95a6457e'
-        response = u.create_event(list_id, email)
-        expect(response).to eq(nil)
-      end
-    end
-  end
-
-  # NEW: END ============================================ #
-
   describe 'segment manipulation' do
     it 'returns list of static segments' do
       VCR.use_cassette('segments') do
