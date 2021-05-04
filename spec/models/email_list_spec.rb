@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'MailchimpMarketing'
 
 # WARNING. The specs here use VCR to replay responses from the real Mailchimp.
 # Should you ever need to re-generate those cassettes, YOU MUST SETUP THE INITIAL

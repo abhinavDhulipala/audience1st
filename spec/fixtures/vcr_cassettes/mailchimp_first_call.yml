@@ -1,0 +1,40 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://us1.api.mailchimp.com/3.0/ping
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Basic dXNlcjo1MTQyODg0OTZkNDFlNjA3Yjc3MWYxZWMyNWEzMDU1YS11czE=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - openresty
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '40'
+      Vary:
+      - Accept-Encoding
+      X-Request-Id:
+      - 2c4f8856-f28c-4e75-a8b4-a35d1f482c00
+      Link:
+      - <https://us1.api.mailchimp.com/schema/3.0/Ping.json>; rel="describedBy"
+      Date:
+      - Mon, 19 Apr 2021 20:35:35 GMT
+      Connection:
+      - keep-alive
+    body:
+      encoding: ASCII-8BIT
+      string: '{"health_status":"Everything''s Chimpy!"}'
+    http_version:
+  recorded_at: Fri, 01 Jan 2010 08:00:02 GMT
+recorded_with: VCR 3.0.3

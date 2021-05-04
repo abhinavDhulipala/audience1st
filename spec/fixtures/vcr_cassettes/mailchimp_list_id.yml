@@ -1,0 +1,79 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://us1.api.mailchimp.com/3.0/ping
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Basic dXNlcjo1MTQyODg0OTZkNDFlNjA3Yjc3MWYxZWMyNWEzMDU1YS11czE=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - openresty
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '40'
+      Vary:
+      - Accept-Encoding
+      X-Request-Id:
+      - 55681ca4-c888-44a3-9adb-8d35bfcd3a9b
+      Link:
+      - <https://us1.api.mailchimp.com/schema/3.0/Ping.json>; rel="describedBy"
+      Date:
+      - Sun, 02 May 2021 22:01:04 GMT
+      Connection:
+      - keep-alive
+    body:
+      encoding: ASCII-8BIT
+      string: '{"health_status":"Everything''s Chimpy!"}'
+    http_version:
+  recorded_at: Fri, 01 Jan 2010 08:00:02 GMT
+- request:
+    method: get
+    uri: https://us1.api.mailchimp.com/3.0/lists?email=kkhus5@berkeley.edu
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Basic dXNlcjo1MTQyODg0OTZkNDFlNjA3Yjc3MWYxZWMyNWEzMDU1YS11czE=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - openresty
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '6214'
+      Vary:
+      - Accept-Encoding
+      X-Request-Id:
+      - 1ff4fb03-50ab-48e0-af7f-04d7a5fe5775
+      Link:
+      - <https://us1.api.mailchimp.com/schema/3.0/Lists/Collection.json>; rel="describedBy"
+      Date:
+      - Sun, 02 May 2021 22:01:04 GMT
+      Connection:
+      - keep-alive
+    body:
+      encoding: ASCII-8BIT
+      string: '{"lists":[{"id":"de95a6457e","web_id":1477694,"name":"Audience1st","contact":{"company":"Audience1st","address1":"5151
+        W Vartikian Ave","address2":"","city":"Fresno","state":"CA","zip":"93722-3362","country":"US","phone":"5596968364"},"permission_reminder":"You
+        are receiving this email because you opted in via our website.","use_archive_bar":true,"campaign_defaults":{"from_name":"Kyle","from_email":"kkhus5@berkeley.edu","subject":"","language":"en"},"notify_on_subscribe":"","notify_on_unsubscribe":"","date_created":"2021-03-14T19:48:25+00:00","list_rating":0,"email_type_option":false,"subscribe_url_short":"http://eepurl.com/hs7UL1","subscribe_url_long":"https://berkeley.us1.list-manage.com/subscribe?u=6988b69f9d100ff0e71a4e348&id=de95a6457e","beamer_address":"us1-0853be5b6d-c71dd1ded6@inbound.mailchimp.com","visibility":"prv","double_optin":false,"has_welcome":false,"marketing_permissions":false,"modules":[],"stats":{"member_count":2,"unsubscribe_count":0,"cleaned_count":0,"member_count_since_send":0,"unsubscribe_count_since_send":0,"cleaned_count_since_send":0,"campaign_count":1,"campaign_last_sent":"","merge_field_count":5,"avg_sub_rate":0,"avg_unsub_rate":0,"target_sub_rate":0,"open_rate":0,"click_rate":0,"last_sub_date":"2021-04-29T01:52:04+00:00","last_unsub_date":""},"_links":[{"rel":"self","href":"https://us1.api.mailchimp.com/3.0/lists/de95a6457e","method":"GET","targetSchema":"https://us1.api.mailchimp.com/schema/3.0/Definitions/Lists/Response.json"},{"rel":"parent","href":"https://us1.api.mailchimp.com/3.0/lists","method":"GET","targetSchema":"https://us1.api.mailchimp.com/schema/3.0/Definitions/Lists/CollectionResponse.json","schema":"https://us1.api.mailchimp.com/schema/3.0/Paths/Lists/Collection.json"},{"rel":"update","href":"https://us1.api.mailchimp.com/3.0/lists/de95a6457e","method":"PATCH","targetSchema":"https://us1.api.mailchimp.com/schema/3.0/Definitions/Lists/Response.json","schema":"https://us1.api.mailchimp.com/schema/3.0/Definitions/Lists/PATCH.json"},{"rel":"batch-sub-unsub-members","href":"https://us1.api.mailchimp.com/3.0/lists/de95a6457e","method":"POST","targetSchema":"https://us1.api.mailchimp.com/schema/3.0/Definitions/Lists/BatchPOST-Response.json","schema":"https://us1.api.mailchimp.com/schema/3.0/Definitions/Lists/BatchPOST.json"},{"rel":"delete","href":"https://us1.api.mailchimp.com/3.0/lists/de95a6457e","method":"DELETE"},{"rel":"abuse-reports","href":"https://us1.api.mailchimp.com/3.0/lists/de95a6457e/abuse-reports","method":"GET","targetSchema":"https://us1.api.mailchimp.com/schema/3.0/Definitions/Lists/Abuse/CollectionResponse.json","schema":"https://us1.api.mailchimp.com/schema/3.0/Paths/Lists/Abuse/Collection.json"},{"rel":"activity","href":"https://us1.api.mailchimp.com/3.0/lists/de95a6457e/activity","method":"GET","targetSchema":"https://us1.api.mailchimp.com/schema/3.0/Definitions/Lists/Activity/Response.json"},{"rel":"clients","href":"https://us1.api.mailchimp.com/3.0/lists/de95a6457e/clients","method":"GET","targetSchema":"https://us1.api.mailchimp.com/schema/3.0/Definitions/Lists/Clients/Response.json"},{"rel":"growth-history","href":"https://us1.api.mailchimp.com/3.0/lists/de95a6457e/growth-history","method":"GET","targetSchema":"https://us1.api.mailchimp.com/schema/3.0/Definitions/Lists/Growth/CollectionResponse.json","schema":"https://us1.api.mailchimp.com/schema/3.0/Paths/Lists/Growth/Collection.json"},{"rel":"interest-categories","href":"https://us1.api.mailchimp.com/3.0/lists/de95a6457e/interest-categories","method":"GET","targetSchema":"https://us1.api.mailchimp.com/schema/3.0/Definitions/Lists/InterestCategories/CollectionResponse.json","schema":"https://us1.api.mailchimp.com/schema/3.0/Paths/Lists/InterestCategories/Collection.json"},{"rel":"members","href":"https://us1.api.mailchimp.com/3.0/lists/de95a6457e/members","method":"GET","targetSchema":"https://us1.api.mailchimp.com/schema/3.0/Definitions/Lists/Members/CollectionResponse.json","schema":"https://us1.api.mailchimp.com/schema/3.0/Paths/Lists/Members/Collection.json"},{"rel":"merge-fields","href":"https://us1.api.mailchimp.com/3.0/lists/de95a6457e/merge-fields","method":"GET","targetSchema":"https://us1.api.mailchimp.com/schema/3.0/Definitions/Lists/MergeFields/CollectionResponse.json","schema":"https://us1.api.mailchimp.com/schema/3.0/Paths/Lists/MergeFields/Collection.json"},{"rel":"segments","href":"https://us1.api.mailchimp.com/3.0/lists/de95a6457e/segments","method":"GET","targetSchema":"https://us1.api.mailchimp.com/schema/3.0/Definitions/Lists/Segments/CollectionResponse.json","schema":"https://us1.api.mailchimp.com/schema/3.0/Paths/Lists/Segments/Collection.json"},{"rel":"webhooks","href":"https://us1.api.mailchimp.com/3.0/lists/de95a6457e/webhooks","method":"GET","targetSchema":"https://us1.api.mailchimp.com/schema/3.0/Definitions/Lists/Webhooks/CollectionResponse.json","schema":"https://us1.api.mailchimp.com/schema/3.0/Paths/Lists/Webhooks/Collection.json"},{"rel":"signup-forms","href":"https://us1.api.mailchimp.com/3.0/lists/de95a6457e/signup-forms","method":"GET","targetSchema":"https://us1.api.mailchimp.com/schema/3.0/Definitions/Lists/SignupForms/CollectionResponse.json","schema":"https://us1.api.mailchimp.com/schema/3.0/Paths/Lists/SignupForms/Collection.json"},{"rel":"locations","href":"https://us1.api.mailchimp.com/3.0/lists/de95a6457e/locations","method":"GET","targetSchema":"https://us1.api.mailchimp.com/schema/3.0/Definitions/Lists/Locations/CollectionResponse.json","schema":"https://us1.api.mailchimp.com/schema/3.0/Paths/Lists/Locations/Collection.json"}]}],"total_items":1,"constraints":{"may_create":false,"max_instances":1,"current_total_instances":1},"_links":[{"rel":"self","href":"https://us1.api.mailchimp.com/3.0/lists","method":"GET","targetSchema":"https://us1.api.mailchimp.com/schema/3.0/Definitions/Lists/CollectionResponse.json","schema":"https://us1.api.mailchimp.com/schema/3.0/Paths/Lists/Collection.json"},{"rel":"create","href":"https://us1.api.mailchimp.com/3.0/lists","method":"POST","targetSchema":"https://us1.api.mailchimp.com/schema/3.0/Definitions/Lists/Response.json","schema":"https://us1.api.mailchimp.com/schema/3.0/Definitions/Lists/POST.json"}]}'
+    http_version:
+  recorded_at: Fri, 01 Jan 2010 08:00:02 GMT
+recorded_with: VCR 3.0.3
