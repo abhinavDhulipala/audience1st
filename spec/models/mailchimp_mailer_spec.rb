@@ -17,9 +17,9 @@ describe MailchimpMailer do
     it 'pings a correct API response for the first call' do
       VCR.use_cassette('new_mailchimp_class') do
         response = @mail_list.mailchimp_init('your mailchimp key')
-        expect(response).to eq({
+        expect(response).to eq(
          "health_status" => "Everything's Chimpy!"
-        })
+        )
       end
     end
 
