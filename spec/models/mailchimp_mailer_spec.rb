@@ -25,18 +25,16 @@ describe MailchimpMailer do
     it 'get list id' do
       VCR.use_cassette('mailchimp_list_id') do
       	  @mail_list.mailchimp_init('insert your key here and delete VCR if you want to modify this test')
-      	  response, error = @mail_list.get_list_id('kkhus5@berkeley.edu')
+      	  response = @mail_list.get_list_id('kkhus5@berkeley.edu')
       	  expect(response).to eq(@list_id)
-          expect(error).to be_falsey
       end
     end
 
     it 'retrieves all segments in a list' do
       VCR.use_cassette('mailchimp_retrieve_segments') do
         @mail_list.mailchimp_init('insert your key here and delete VCR if you want to modify this test')
-        response, error = @mail_list.find_segment(@list_id)
+        response = @mail_list.find_segment(@list_id)
         expect(response).to eq(@segment_id)
-        expect(error).to be_falsey
       end
     end
 

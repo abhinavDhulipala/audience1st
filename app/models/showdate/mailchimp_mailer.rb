@@ -2,7 +2,7 @@ require 'digest'
 
 class MailchimpMailer
 
-  attr_reader @errors
+  attr_reader :errors
 
   def initialize(key = nil)
     @apikey = key || (Option.mailchimp_key rescue nil)
@@ -35,18 +35,6 @@ class MailchimpMailer
     end
   end
 
-
-  # batch add/remove list members to static segment
-  # def batch_add()
-  #   begin
-  #     response = client.lists.batch_segment_members({}, 'list_id', 'segment_id')
-  #     puts response
-  #   rescue MailchimpMarketing::ApiError => e
-  #     @errors << e
-  #     return e.to_s, true
-  #   end
-  # end
-
   def create_segment(list_id, segment_name, emails_to_add)
     mailchimp_handler do
       # 'name' and 'static segment' are required body params
@@ -58,7 +46,7 @@ class MailchimpMailer
 
   # https://github.com/mailchimp/mailchimp-marketing-ruby/blob/master/lib/MailchimpMarketing/api/lists_api.rb#L1088
   # For now this method just gets the first segment in the list. Here as a template for future devs
-  # @returns str(segment_id or error), bool(whether error was encountered)
+  # @returns str(segment_id or nil)
   def find_segment(list_id)
     mailchimp_handler do
       # further body params found here:  https://mailchimp.com/developer/marketing/api/list-segments/list-segments/
@@ -82,7 +70,7 @@ class MailchimpMailer
       block.call
     rescue MailchimpMarketing::ApiError => e
       @errors << e
-      Rails.logger.info "mailchimp init: #{@errors}"
+      Rails.logger.info "mailchimp error: #{e}"
       nil
     end
   end
