@@ -10,6 +10,7 @@ describe MailchimpMailer do
     @mail_list = MailchimpMailer.new
     @list_id = 'de95a6457e'
     @segment_id = 1604350
+    @api_key = 'insert your key here and delete VCR if you want to modify this test'
   end
 
   describe 'mailchimp API testing' do
@@ -24,7 +25,7 @@ describe MailchimpMailer do
 
     it 'get list id' do
       VCR.use_cassette('mailchimp_list_id') do
-      	  @mail_list.mailchimp_init('insert your key here and delete VCR if you want to modify this test')
+      	  @mail_list.mailchimp_init(@api_key)
       	  response = @mail_list.get_list_id('kkhus5@berkeley.edu')
       	  expect(response).to eq(@list_id)
       end
@@ -32,7 +33,7 @@ describe MailchimpMailer do
 
     it 'retrieves all segments in a list' do
       VCR.use_cassette('mailchimp_retrieve_segments') do
-        @mail_list.mailchimp_init('insert your key here and delete VCR if you want to modify this test')
+        @mail_list.mailchimp_init(@api_key)
         response = @mail_list.find_segment(@list_id)
         expect(response).to eq(@segment_id)
       end
@@ -40,7 +41,7 @@ describe MailchimpMailer do
 
     it 'creates a segment' do
       VCR.use_cassette('mailchimp_create_segment') do
-        @mail_list.mailchimp_init('insert your key here and delete VCR if you want to modify this test')
+        @mail_list.mailchimp_init(@api_key)
         segment_name = 'Segment Name'
         emails_to_add = []
         response = @mail_list.create_segment(@list_id, segment_name, emails_to_add)
