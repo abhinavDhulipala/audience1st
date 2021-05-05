@@ -8,10 +8,9 @@ require 'rails_helper'
 describe MailchimpMailer do
   before do
     @mail_list = MailchimpMailer.new
-    @list_id = 'rand_list_id'
-    @segment_id = 1324567
+    @list_id = 'de95a6457e'
+    @segment_id = 1604350
     @api_key = 'insert your key here and delete VCR if you want to modify this test'
-    @email = 'oski@berkeley.edu'
   end
 
   describe 'mailchimp API testing' do
@@ -25,7 +24,7 @@ describe MailchimpMailer do
     it 'get list id' do
       VCR.use_cassette('mailchimp_list_id') do
       	  @mail_list.mailchimp_init(@api_key)
-      	  response = @mail_list.get_list_id @email
+      	  response = @mail_list.get_list_id('kkhus5@berkeley.edu')
       	  expect(response).to eq(@list_id)
       end
     end
